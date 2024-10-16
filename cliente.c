@@ -19,3 +19,25 @@ char modulo_cliente(void) {
     } while(opcao_c != '0');
     return 0;
 }
+
+char menu_cliente(void) {
+    system("clear||cls");
+    char op;
+    printf("\n");
+    printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
+    printf("@@@                            Sis-Fantasy                                  @@@\n");
+    printf("@@@                      Developed By NIL and Felipe                        @@@\n");
+    printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
+    printf("@@@                         * * * CLIENTE * * *                             @@@\n");
+    printf("@@@                         1 * CADASTRAR CLIENTE                           @@@\n");
+    printf("@@@                         2 * ATUALIZAR CLIENTE                           @@@\n");
+    printf("@@@                         3 * EXCLUIR CLIENTE                             @@@\n");
+    printf("@@@                         4 * PESQUISAR CLIENTE                           @@@\n");
+    printf("@@@                         0 * VOLTAR                                      @@@\n");
+    printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
+    printf("\n");
+    printf("Escolha uma opcao: ");
+    scanf(" %c", &op);
+    getchar();
+    return op;
+}
