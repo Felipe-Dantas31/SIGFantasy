@@ -41,3 +41,44 @@ char menu_produto(void) {
     getchar(); 
     return op;
 }
+
+void cadastrar_produto(void) {
+    system("clear||cls");
+    char id[10], nome[50], tipo[10];
+    float preco;
+    int quantidade;
+
+    printf("\n");
+    printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
+    printf("@@@                             Sis-Fantasy                                 @@@\n");
+    printf("@@@                      Developed By NIL and Felipe                        @@@\n");
+    printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
+    printf("@@@                                                                         @@@\n");
+    printf("@@@                 * * *  CADASTRAR PRODUTO   * * *                        @@@\n");
+    printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
+
+
+    printf("\nDigite o ID do Produto (apenas numeros): ");
+    fgets(id, 10, stdin);
+    id[strcspn(id, "\n")] = '\0'; 
+
+    printf("Digite o Nome: ");
+    fgets(nome, 50, stdin);
+    nome[strcspn(nome, "\n")] = '\0';
+
+    printf("Digite o Tipo: ");
+    fgets(tipo, 10, stdin);
+    tipo[strcspn(tipo, "\n")] = '\0';
+
+    printf("Digite o Preco: ");
+    scanf("%f", &preco);
+    getchar(); 
+    
+    printf("Digite a Quantidade em Estoque: ");
+    scanf("%d", &quantidade);
+    getchar(); 
+
+    printf("\nProduto cadastrado com sucesso!\n");
+    printf(">>> Tecle <ENTER> para continuar...\n");
+    getchar();
+}
