@@ -3,7 +3,6 @@
 #include <string.h>
 
 
-
 char menu_principal(void);
 char modulo_cliente(void);
 char menu_cliente(void);
