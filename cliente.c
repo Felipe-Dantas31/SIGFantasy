@@ -100,3 +100,19 @@ void atualizar_cliente(void){
     printf(">>> Tecle <ENTER> para continuar...\n");
     getchar();
 }
+
+void excluir_cliente(void){
+    system("clear||cls");
+    printf("\n");
+    printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
+    printf("@@@                             Sis-Fantasy                                 @@@\n");
+    printf("@@@                      Developed By NIL and Felipe                        @@@\n");
+    printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
+    printf("@@@                                                                         @@@\n");
+    printf("@@@                    * * *  Excluir Cliente  * * *                        @@@\n");
+    printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
+    printf("@@@                         Em Desenvolvilmento                             @@@\n");
+    printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
+    printf(">>> Tecle <ENTER> para continuar...\n");
+    getchar();
+}   
