@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "funcionario.h"
 
 char modulo_funcionario(void) {
     char opcao_f;
@@ -104,6 +105,21 @@ void pesquisar_funcionario(void){
     getchar();
 }
 
+void atualizar_funcionario(void){
+    system("clear||cls");
+    printf("\n");
+    printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
+    printf("@@@                             Sis-Fantasy                                 @@@\n");
+    printf("@@@                      Developed By NIL and Felipe                        @@@\n");
+    printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
+    printf("@@@                                                                         @@@\n");
+    printf("@@@                  * * *  Atualizar Funcionario  * * *                    @@@\n");
+    printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
+    printf("@@@                         Em Desenvolvilmento                             @@@\n");
+    printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
+    printf(">>> Tecle <ENTER> para continuar...\n");
+    getchar();
+}
 
 void excluir_funcionario(void){
     system("clear||cls");

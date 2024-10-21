@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "cliente.h"
 
 char modulo_cliente(void) {
     char opcao_c;

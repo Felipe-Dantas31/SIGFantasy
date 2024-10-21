@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "produto.h"
 
 char modulo_produto(void) {
     char opcao_p;
