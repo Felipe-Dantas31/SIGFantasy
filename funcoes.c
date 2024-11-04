@@ -63,3 +63,29 @@ int verificarCPF(char* cpf) {
 
     return 1; 
 }
+
+int verificarnome(char* nome){
+    for(int i = 0; nome[i]!= '\0';i++){
+        if(!isalpha(nome[i])){
+            printf("Nome Invalido ");
+            return 0;
+        }
+    }return 1;
+}
+
+int verificarfone(char* fone){
+    char foneNumeros[15];
+    int j = 0;
+    for (int i = 0; fone[i] != '\0' && j < 11; i++) {
+        if (isdigit(fone[i])) {
+            foneNumeros[j++] = fone[i];
+        }
+    }
+    foneNumeros[j] = '\0';
+
+    if (strlen(foneNumeros) < 9) {
+        printf("Telefone Invalido ");
+        return 0; 
+    }
+
+}   

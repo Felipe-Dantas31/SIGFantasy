@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include "cliente.h"
 #include "funcoes.h"
 
@@ -46,7 +47,7 @@ char menu_cliente(void) {
 
 void cadastrar_cliente(void) {
     system("clear||cls");
-    char cpf[15], nome[50], data_nascimento[11], telefone[15], email[50], endereco[100];
+    char cpf[15], nome[50], fone[19], email[50], endereco[100];
 
     printf("\n");
     printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
@@ -63,17 +64,15 @@ void cadastrar_cliente(void) {
         cpf[strcspn(cpf, "\n")] = '\0'; 
     }while(!verificarCPF(cpf));
 
-    printf("Digite o Nome: ");
-    fgets(nome, 50, stdin);
-    nome[strcspn(nome, "\n")] = '\0';
-
-    printf("Digite a Data de Nascimento (DD/MM/AAAA): ");
-    fgets(data_nascimento, 11, stdin);
-    data_nascimento[strcspn(data_nascimento, "\n")] = '\0';
+    do{
+        printf("\nDigite o Nome: ");
+        fgets(nome, 50, stdin);
+        nome[strcspn(nome, "\n")] = '\0';
+    }while(!verificarnome(nome));
 
     printf("Digite o Telefone: ");
-    fgets(telefone, 15, stdin);
-    telefone[strcspn(telefone, "\n")] = '\0';
+    fgets(fone, 15, stdin);
+    fone[strcspn(fone, "\n")] = '\0';
 
     printf("Digite o Email: ");
     fgets(email, 50, stdin);
