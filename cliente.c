@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "cliente.h"
+#include "funcoes.h"
 
 char modulo_cliente(void) {
     char opcao_c;
@@ -45,7 +46,7 @@ char menu_cliente(void) {
 
 void cadastrar_cliente(void) {
     system("clear||cls");
-    char cpf[12], nome[50], data_nascimento[11], telefone[15], email[50], endereco[100];
+    char cpf[15], nome[50], data_nascimento[11], telefone[15], email[50], endereco[100];
 
     printf("\n");
     printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
@@ -56,10 +57,11 @@ void cadastrar_cliente(void) {
     printf("@@@                 * * *  CADASTRAR CLIENTE   * * *                        @@@\n");
     printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
 
-   
-    printf("\nDigite o CPF (apenas numeros): ");
-    fgets(cpf, 12, stdin);
-    cpf[strcspn(cpf, "\n")] = '\0'; 
+    do{
+        printf("\nDigite o CPF : ");
+        fgets(cpf, 15, stdin);
+        cpf[strcspn(cpf, "\n")] = '\0'; 
+    }while(!verificarCPF(cpf));
 
     printf("Digite o Nome: ");
     fgets(nome, 50, stdin);
