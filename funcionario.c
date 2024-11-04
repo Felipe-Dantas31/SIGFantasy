@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "funcionario.h"
+#include <ctype.h>
+#include "funcoes.h"
 
 char modulo_funcionario(void) {
     char opcao_f;
@@ -46,7 +48,7 @@ char menu_funcionario(void) {
 
 void cadastrar_funcionario(void) {
     system("clear||cls");
-    char id[10], nome[50], cargo[30], telefone[15], email[50], endereco[100];
+    char cpf[15], nome[50], cargo[30], fone[19], email[50];
 
     printf("\n");
     printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
@@ -57,30 +59,33 @@ void cadastrar_funcionario(void) {
     printf("@@@               * * *  CADASTRAR FUNCIONARIO   * * *                      @@@\n");
     printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
 
-   
-    printf("\nDigite o ID do Funcionario (apenas numeros): ");
-    fgets(id, 10, stdin);
-    id[strcspn(id, "\n")] = '\0'; 
+    do{
+        printf("\nDigite o CPF do Funcionario: ");
+        fgets(cpf, 15, stdin);
+        cpf[strcspn(cpf, "\n")] = '\0'; 
+    }while(!verificarCPF(cpf));
 
-    printf("Digite o Nome: ");
-    fgets(nome, 50, stdin);
-    nome[strcspn(nome, "\n")] = '\0';
+    do{
+        printf("\nDigite o Nome: ");
+        fgets(nome, 50, stdin);
+        nome[strcspn(nome, "\n")] = '\0';
+    }while(!verificarnome(nome));
 
-    printf("Digite o Cargo: ");
+    printf("\nDigite o Cargo: ");
     fgets(cargo, 30, stdin);
     cargo[strcspn(cargo, "\n")] = '\0';
 
-    printf("Digite o Telefone: ");
-    fgets(telefone, 15, stdin);
-    telefone[strcspn(telefone, "\n")] = '\0';
+    do{
+        printf("Digite o Telefone: ");
+        fgets(fone, 15, stdin);
+        fone[strcspn(fone, "\n")] = '\0';
+    }while(!verificarfone(fone));
 
-    printf("Digite o Email: ");
-    fgets(email, 50, stdin);
-    email[strcspn(email, "\n")] = '\0';
-
-    printf("Digite o Endereco: ");
-    fgets(endereco, 100, stdin);
-    endereco[strcspn(endereco, "\n")] = '\0';
+     do{ 
+        printf("Digite o Email: ");
+        fgets(email, 50, stdin);
+        email[strcspn(email, "\n")] = '\0';
+     }while(verificaremail(email));
 
     printf("\nFuncionario cadastrado com sucesso!\n");
     printf(">>> Tecle <ENTER> para continuar...\n");
