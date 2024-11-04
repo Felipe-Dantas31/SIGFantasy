@@ -89,4 +89,22 @@ int verificarfone(char* fone){
     }
     return 1;
 
-}   
+}
+
+int verificaremail(char* email){
+    int c_arroba = 0, c_ponto = 0;
+    for(int i = 0; email[i]!= '\0'; i++){
+        if (email[i]=='@' && email[i+1]!= '\0'){
+            c_arroba ++;    
+            for (int j = i; email[j] != '\0'; j++){
+                if(email[j]=='.' && email[j+1] != '\0'){
+                    c_ponto ++;
+                } 
+            }
+        }
+    }if(c_arroba > 1 || c_ponto >1 || c_arroba == 0 || c_ponto == 0){
+        printf("Email Invalido ");
+        return 0;
+    }return 1;
+
+}

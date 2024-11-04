@@ -76,9 +76,11 @@ void cadastrar_cliente(void) {
         fone[strcspn(fone, "\n")] = '\0';
     }while(!verificarfone(fone));
 
-    printf("Digite o Email: ");
-    fgets(email, 50, stdin);
-    email[strcspn(email, "\n")] = '\0';
+    do{
+        printf("Digite o Email: ");
+        fgets(email, 50, stdin);
+        email[strcspn(email, "\n")] = '\0';
+    }while(!verificaremail(email));
 
     printf("Digite o Endereco: ");
     fgets(endereco, 100, stdin);
