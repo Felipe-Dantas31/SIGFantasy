@@ -70,9 +70,11 @@ void cadastrar_cliente(void) {
         nome[strcspn(nome, "\n")] = '\0';
     }while(!verificarnome(nome));
 
-    printf("Digite o Telefone: ");
-    fgets(fone, 15, stdin);
-    fone[strcspn(fone, "\n")] = '\0';
+    do{
+        printf("\nDigite o Telefone: ");
+        fgets(fone, 15, stdin);
+        fone[strcspn(fone, "\n")] = '\0';
+    }while(!verificarfone(fone));
 
     printf("Digite o Email: ");
     fgets(email, 50, stdin);

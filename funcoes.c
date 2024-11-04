@@ -76,16 +76,17 @@ int verificarnome(char* nome){
 int verificarfone(char* fone){
     char foneNumeros[15];
     int j = 0;
-    for (int i = 0; fone[i] != '\0' && j < 11; i++) {
+    for (int i = 0; fone[i] != '\0' && j < 14; i++) {
         if (isdigit(fone[i])) {
             foneNumeros[j++] = fone[i];
         }
     }
     foneNumeros[j] = '\0';
 
-    if (strlen(foneNumeros) < 9) {
+    if (strlen(foneNumeros) < 8) {
         printf("Telefone Invalido ");
         return 0; 
     }
+    return 1;
 
 }   
