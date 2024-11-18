@@ -4,3 +4,12 @@ void cadastrar_produto(void);
 void atualizar_produto(void);
 void pesquisar_produto(void);
 void excluir_produto(void);
+
+typedef struct produto Produto;
+
+struct produto
+{
+    char id[10], nome[50], tipo[10];
+    float preco;
+    int quantidade;
+};
