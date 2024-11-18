@@ -47,7 +47,8 @@ char menu_cliente(void) {
 
 void cadastrar_cliente(void) {
     system("clear||cls");
-    char cpf[15], nome[50], fone[19], email[50], endereco[100];
+    Cliente* cliente;
+    cliente = (Cliente*) malloc(sizeof(Cliente));
 
     printf("\n");
     printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
@@ -60,31 +61,31 @@ void cadastrar_cliente(void) {
 
     do{
         printf("\nDigite o CPF : ");
-        fgets(cpf, 15, stdin);
-        cpf[strcspn(cpf, "\n")] = '\0'; 
-    }while(!verificarCPF(cpf));
+        fgets(cliente->cpf, 15, stdin);
+        cliente->cpf[strcspn(cliente->cpf, "\n")] = '\0'; 
+    }while(!verificarCPF(cliente->cpf));
 
     do{
         printf("\nDigite o Nome: ");
-        fgets(nome, 50, stdin);
-        nome[strcspn(nome, "\n")] = '\0';
-    }while(!verificarnome(nome));
+        fgets(cliente->nome, 50, stdin);
+        cliente->nome[strcspn(cliente->nome, "\n")] = '\0';
+    }while(!verificarnome(cliente->nome));
 
     do{
         printf("\nDigite o Telefone: ");
-        fgets(fone, 15, stdin);
-        fone[strcspn(fone, "\n")] = '\0';
-    }while(!verificarfone(fone));
+        fgets(cliente->fone, 15, stdin);
+        cliente->fone[strcspn(cliente->fone, "\n")] = '\0';
+    }while(!verificarfone(cliente->fone));
 
     do{
         printf("\nDigite o Email: ");
-        fgets(email, 50, stdin);
-        email[strcspn(email, "\n")] = '\0';
-    }while(!verificaremail(email));
+        fgets(cliente->email, 50, stdin);
+        cliente->email[strcspn(cliente->email, "\n")] = '\0';
+    }while(!verificaremail(cliente->email));
 
     printf("\nDigite o Endereco: ");
-    fgets(endereco, 100, stdin);
-    endereco[strcspn(endereco, "\n")] = '\0';
+    fgets(cliente->endereco, 100, stdin);
+    cliente->endereco[strcspn(cliente->endereco, "\n")] = '\0';
 
     printf("\nCliente cadastrado com sucesso!\n");
     printf(">>> Tecle <ENTER> para continuar...\n");
