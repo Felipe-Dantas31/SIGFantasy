@@ -50,6 +50,9 @@ void cadastrar_cliente(void) {
     Cliente* cliente;
     cliente = (Cliente*) malloc(sizeof(Cliente));
 
+    FILE* fp;
+    fp = fopen("cliente.dat", "ab");
+
     printf("\n");
     printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
     printf("@@@                             Sis-Fantasy                                 @@@\n");
@@ -86,6 +89,10 @@ void cadastrar_cliente(void) {
     printf("\nDigite o Endereco: ");
     fgets(cliente->endereco, 100, stdin);
     cliente->endereco[strcspn(cliente->endereco, "\n")] = '\0';
+
+    fwrite(cliente, sizeof(Cliente), 1, fp);
+    fclose(fp);
+    free(cliente);
 
     printf("\nCliente cadastrado com sucesso!\n");
     printf(">>> Tecle <ENTER> para continuar...\n");
