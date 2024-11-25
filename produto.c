@@ -44,9 +44,11 @@ char menu_produto(void) {
 }
 
 void cadastrar_produto(void) {
-    system("clear||cls");
     Produto* produto;
     produto = (Produto*) malloc(sizeof(Produto));
+
+    FILE* fp;
+    fp = fopen("produto.dat", "ab");
 
     printf("\n");
     printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
@@ -70,13 +72,21 @@ void cadastrar_produto(void) {
     fgets(produto->tipo, 10, stdin);
     produto->tipo[strcspn(produto->tipo, "\n")] = '\0';
 
-    printf("Digite o Preco: ");
-    scanf("%f", produto->preco);
-    getchar(); 
+    //char preco[] = "";
+    //printf("Digite o Preco: ");
+    //scanf("%s", preco);
+    //getchar(); 
+    //produto->preco = strtof(preco, NULL);
     
-    printf("Digite a Quantidade em Estoque: ");
-    scanf("%d", produto->quantidade);
-    getchar(); 
+    //char qntd[] = "";
+    //printf("Digite a Quantidade em Estoque: ");
+    //scanf("%s", qntd);
+    //getchar(); 
+    //produto->quantidade = atoi(qntd);
+
+    fwrite(produto, sizeof(Produto), 1, fp);
+    fclose(fp);
+    free(produto);
 
     printf("\nProduto cadastrado com sucesso!\n");
     printf(">>> Tecle <ENTER> para continuar...\n");
