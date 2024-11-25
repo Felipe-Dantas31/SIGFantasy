@@ -51,6 +51,9 @@ void cadastrar_funcionario(void) {
     Funcionario* funcionario;
     funcionario = (Funcionario*) malloc(sizeof(Funcionario));
 
+    FILE* fp;
+    fp = fopen("funcionario.dat", "ab");
+
     printf("\n");
     printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
     printf("@@@                             Sis-Fantasy                                 @@@\n");
@@ -87,6 +90,10 @@ void cadastrar_funcionario(void) {
         fgets(funcionario->email, 50, stdin);
         funcionario->email[strcspn(funcionario->email, "\n")] = '\0';
      }while(verificaremail(funcionario->email));
+
+    fwrite(funcionario, sizeof(Funcionario), 1, fp);
+    fclose(fp);
+    free(funcionario);
 
     printf("\nFuncionario cadastrado com sucesso!\n");
     printf(">>> Tecle <ENTER> para continuar...\n");
