@@ -90,6 +90,8 @@ void cadastrar_produto(void) {
     //getchar(); 
     //produto->quantidade = atoi(qntd);
 
+    produto->status = '1';
+
     fwrite(produto, sizeof(Produto), 1, fp);
     fclose(fp);
     free(produto);
@@ -132,6 +134,13 @@ void excluir_produto(void){
 
 void pesquisar_produto(void){
     system("clear||cls");
+    char* id;
+    id = (char*) malloc(10*sizeof(char));
+    Produto* produto;
+    produto = (Produto*) malloc(sizeof(Produto));
+    FILE* fp;
+    fp = fopen("produto.dat", "rb");
+
     printf("\n");
     printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
     printf("@@@                             Sis-Fantasy                                 @@@\n");
@@ -140,8 +149,28 @@ void pesquisar_produto(void){
     printf("@@@                                                                         @@@\n");
     printf("@@@                  * * *  Pesquisar Produto  * * *                        @@@\n");
     printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
-    printf("@@@                         Em Desenvolvilmento                             @@@\n");
-    printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
+    
+    do{
+        printf("\nDigite o Id : ");
+        fgets(id, 10, stdin);
+        id[strcspn(id, "\n")] = '\0'; 
+    }while(!verificarnumero(id));
+
+    while(fread(produto, sizeof(Produto), 1, fp)) {
+        if ((strcmp(produto->id, id) == 0)){
+            printf("Id: %s\n", produto->id);
+            printf("Nome: %s\n", produto->nome);
+            printf("Tipo: %s\n", produto->tipo);
+            printf("Preço: %f\n", produto->preco);
+            printf("Quantidade: %d\n", produto->quantidade);
+            printf("Status: %c\n", produto->status);
+        }
+    }
+    
+    fclose(fp);
+    free(produto);
+    free(id);
+
     printf(">>> Tecle <ENTER> para continuar...\n");
     getchar();
 }

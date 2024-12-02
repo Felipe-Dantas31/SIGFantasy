@@ -133,9 +133,9 @@ void pesquisar_funcionario(void){
         if ((strcmp(funcionario->cpf, cpf) == 0)){
             printf("CPF: %s\n", funcionario->cpf);
             printf("Nome: %s\n", funcionario->nome);
-            printf("Nome: %s\n", funcionario->cargo);
+            printf("Cargo: %s\n", funcionario->cargo);
             printf("E-mail: %s\n", funcionario->email);
-            printf("Id: %s\n", funcionario->fone);
+            printf("Telefone: %s\n", funcionario->fone);
             printf("Status: %c\n", funcionario->status);
         }
     }
