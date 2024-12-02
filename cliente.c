@@ -90,6 +90,8 @@ void cadastrar_cliente(void) {
     fgets(cliente->endereco, 100, stdin);
     cliente->endereco[strcspn(cliente->endereco, "\n")] = '\0';
 
+    cliente->status = '1';
+
     fwrite(cliente, sizeof(Cliente), 1, fp);
     fclose(fp);
     free(cliente);
@@ -133,6 +135,13 @@ void excluir_cliente(void){
 
 void pesquisar_cliente(void){
     system("clear||cls");
+    char* cpf;
+    cpf = (char*) malloc(15*sizeof(char));
+    Cliente* cliente;
+    cliente = (Cliente*) malloc(sizeof(Cliente));
+    FILE* fp;
+    fp = fopen("cliente.dat", "rb");
+
     printf("\n");
     printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
     printf("@@@                             Sis-Fantasy                                 @@@\n");
@@ -141,8 +150,27 @@ void pesquisar_cliente(void){
     printf("@@@                                                                         @@@\n");
     printf("@@@                  * * *  Pesquisar Cliente  * * *                        @@@\n");
     printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
-    printf("@@@                         Em Desenvolvilmento                             @@@\n");
-    printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
+    do{
+        printf("\nDigite o CPF : ");
+        fgets(cpf, 15, stdin);
+        cpf[strcspn(cpf, "\n")] = '\0'; 
+    }while(!verificarCPF(cpf));
+
+    while(fread(cliente, sizeof(Cliente), 1, fp)) {
+        if ((strcmp(cliente->cpf, cpf) == 0)){
+            printf("CPF: %s\n", cliente->cpf);
+            printf("Nome: %s\n", cliente->nome);
+            printf("E-mail: %s\n", cliente->email);
+            printf("Telefone: %s\n", cliente->endereco);
+            printf("Id: %s\n", cliente->fone);
+            printf("Status: %c\n", cliente->status);
+        }
+    }
+    
+    fclose(fp);
+    free(cliente);
+    free(cpf);
+
     printf(">>> Tecle <ENTER> para continuar...\n");
     getchar();
 }
