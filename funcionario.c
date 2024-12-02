@@ -80,18 +80,20 @@ void cadastrar_funcionario(void) {
         fgets(funcionario->cargo, 30, stdin);
         funcionario->cargo[strcspn(funcionario->cargo, "\n")] = '\0';
     }while(!verificarnome(funcionario->cargo));
-    
+
     do{
         printf("Digite o Telefone: ");
         fgets(funcionario->fone, 15, stdin);
         funcionario->fone[strcspn(funcionario->fone, "\n")] = '\0';
     }while(!verificarfone(funcionario->fone));
 
-     do{ 
+    do{ 
         printf("Digite o Email: ");
         fgets(funcionario->email, 50, stdin);
         funcionario->email[strcspn(funcionario->email, "\n")] = '\0';
-     }while(verificaremail(funcionario->email));
+    }while(verificaremail(funcionario->email));
+
+    funcionario->status = '1';
 
     fwrite(funcionario, sizeof(Funcionario), 1, fp);
     fclose(fp);
@@ -106,6 +108,13 @@ void cadastrar_funcionario(void) {
 
 void pesquisar_funcionario(void){
     system("clear||cls");
+    char* cpf;
+    cpf = (char*) malloc(15*sizeof(char));
+    Funcionario* funcionario;
+    funcionario = (Funcionario*) malloc(sizeof(Funcionario));
+    FILE* fp;
+    fp = fopen("funcionario.dat", "rb");
+
     printf("\n");
     printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
     printf("@@@                             Sis-Fantasy                                 @@@\n");
@@ -114,8 +123,27 @@ void pesquisar_funcionario(void){
     printf("@@@                                                                         @@@\n");
     printf("@@@                  * * *  Pesquisar Funcionario  * * *                    @@@\n");
     printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
-    printf("@@@                         Em Desenvolvilmento                             @@@\n");
-    printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
+    do{
+        printf("\nDigite o CPF : ");
+        fgets(cpf, 15, stdin);
+        cpf[strcspn(cpf, "\n")] = '\0'; 
+    }while(!verificarCPF(cpf));
+
+    while(fread(funcionario, sizeof(Funcionario), 1, fp)) {
+        if ((strcmp(funcionario->cpf, cpf) == 0)){
+            printf("CPF: %s\n", funcionario->cpf);
+            printf("Nome: %s\n", funcionario->nome);
+            printf("Nome: %s\n", funcionario->cargo);
+            printf("E-mail: %s\n", funcionario->email);
+            printf("Id: %s\n", funcionario->fone);
+            printf("Status: %c\n", funcionario->status);
+        }
+    }
+    
+    fclose(fp);
+    free(funcionario);
+    free(cpf);
+    
     printf(">>> Tecle <ENTER> para continuar...\n");
     getchar();
 }
