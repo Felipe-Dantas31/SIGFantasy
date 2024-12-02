@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "produto.h"
+#include "funcoes.h"
 
 char modulo_produto(void) {
     char opcao_p;
@@ -59,18 +60,23 @@ void cadastrar_produto(void) {
     printf("@@@                 * * *  CADASTRAR PRODUTO   * * *                        @@@\n");
     printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
 
+    do{
+        printf("\nDigite o ID do Produto (apenas numeros): ");
+        fgets(produto->id, 10, stdin);
+        produto->id[strcspn(produto->id, "\n")] = '\0'; 
+    }while((!verificarnumero(produto->id)));
 
-    printf("\nDigite o ID do Produto (apenas numeros): ");
-    fgets(produto->id, 10, stdin);
-    produto->id[strcspn(produto->id, "\n")] = '\0'; 
+    do{
+        printf("Digite o Nome: ");
+        fgets(produto->nome, 50, stdin);
+        produto->nome[strcspn(produto->nome, "\n")] = '\0';
+    }while(!verificarnome(produto->nome));
 
-    printf("Digite o Nome: ");
-    fgets(produto->nome, 50, stdin);
-    produto->nome[strcspn(produto->nome, "\n")] = '\0';
-
-    printf("Digite o Tipo: ");
-    fgets(produto->tipo, 10, stdin);
-    produto->tipo[strcspn(produto->tipo, "\n")] = '\0';
+    do{
+        printf("Digite o Tipo: ");
+        fgets(produto->tipo, 10, stdin);
+        produto->tipo[strcspn(produto->tipo, "\n")] = '\0';
+    }while(!verificarnome(produto->tipo));
 
     //char preco[] = "";
     //printf("Digite o Preco: ");

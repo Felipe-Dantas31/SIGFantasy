@@ -4,6 +4,23 @@
 #include <ctype.h>
 #include "funcoes.h"
 
+int verificarnumero(char* num){
+    int a = 0;
+    int i;
+
+    for(i = 0; num[i] != '\0'; i++){
+        if (num[i] >= '0' && num[i] <= '9') {
+            a++;
+        }
+    }
+
+    if(a == strlen(num)){
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
 int verificardigito(int soma, int peso) {
     int resto = soma % 11;
     return (resto < 2) ? 0 : 11 - resto;

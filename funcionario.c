@@ -75,10 +75,12 @@ void cadastrar_funcionario(void) {
         funcionario->nome[strcspn(funcionario->nome, "\n")] = '\0';
     }while(!verificarnome(funcionario->nome));
 
-    printf("\nDigite o Cargo: ");
-    fgets(funcionario->cargo, 30, stdin);
-    funcionario->cargo[strcspn(funcionario->cargo, "\n")] = '\0';
-
+    do{
+        printf("\nDigite o Cargo: ");
+        fgets(funcionario->cargo, 30, stdin);
+        funcionario->cargo[strcspn(funcionario->cargo, "\n")] = '\0';
+    }while(!verificarnome(funcionario->cargo));
+    
     do{
         printf("Digite o Telefone: ");
         fgets(funcionario->fone, 15, stdin);
