@@ -60,6 +60,7 @@ void cadastrar_cliente(void) {
     printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
     printf("@@@                                                                         @@@\n");
     printf("@@@                 * * *  CADASTRAR CLIENTE   * * *                        @@@\n");
+    printf("@@@                                                                         @@@\n");
     printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
 
     do{
@@ -110,6 +111,7 @@ void atualizar_cliente(void){
     printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
     printf("@@@                                                                         @@@\n");
     printf("@@@                  * * *  Atualizar Cliente  * * *                        @@@\n");
+    printf("@@@                                                                         @@@\n");
     printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
     printf("@@@                         Em Desenvolvilmento                             @@@\n");
     printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
@@ -117,8 +119,17 @@ void atualizar_cliente(void){
     getchar();
 }
 
-void excluir_cliente(void){
+void excluir_cliente(void){ 
     system("clear||cls");
+    char* cpf = (char*) malloc(15*sizeof(char));
+    char op;
+    FILE* fp;
+    fp = fopen("cliente.dat", "rb");
+    FILE* f;
+    f = fopen("temp.dat", "ab");
+    Cliente* cliente;
+    cliente = (Cliente*) malloc(sizeof(Cliente));
+
     printf("\n");
     printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
     printf("@@@                             Sis-Fantasy                                 @@@\n");
@@ -126,9 +137,47 @@ void excluir_cliente(void){
     printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
     printf("@@@                                                                         @@@\n");
     printf("@@@                    * * *  Excluir Cliente  * * *                        @@@\n");
+    printf("@@@                                                                         @@@\n");
     printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
-    printf("@@@                         Em Desenvolvilmento                             @@@\n");
-    printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
+    
+    if(fp == NULL || f == NULL){
+        printf("Arquivo não encontrado!");
+    }
+
+    do{
+        printf("1 - Excluir permanentemente\n2 - Desativar o status ON do registro:\n");
+        scanf("%s", &op);
+        getchar();
+    }while(!verificarnumero(&op));
+
+    do{
+        printf("\nDigite o CPF : ");
+        fgets(cpf, 15, stdin);
+        cpf[strcspn(cpf, "\n")] = '\0';
+    }while(!verificarCPF(cpf));
+    
+    if(op == '1'){
+        while(fread(cliente, sizeof(Cliente), 1, fp)){
+            if(strcmp(cliente->cpf, cpf) != 0){
+                fwrite(cliente, sizeof(Cliente), 1, f);
+            }
+        }
+    } else {
+        while(fread(cliente, sizeof(Cliente), 1, fp)){
+            if(strcmp(cliente->cpf, cpf) == 0){
+                cliente->status = '0';
+            }
+            fwrite(cliente, sizeof(Cliente), 1, f);
+        }
+    }
+
+    fclose(fp);
+    fclose(f);
+    free(cliente);
+    free(cpf);
+    remove("cliente.dat");
+    rename("temp.dat", "cliente.dat");
+    
     printf(">>> Tecle <ENTER> para continuar...\n");
     getchar();
 }   
@@ -149,7 +198,13 @@ void pesquisar_cliente(void){
     printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
     printf("@@@                                                                         @@@\n");
     printf("@@@                  * * *  Pesquisar Cliente  * * *                        @@@\n");
+    printf("@@@                                                                         @@@\n");
     printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
+    
+    if(fp == NULL){
+        printf("Arquivo não encontrado!");
+    }
+
     do{
         printf("\nDigite o CPF : ");
         fgets(cpf, 15, stdin);
@@ -161,8 +216,8 @@ void pesquisar_cliente(void){
             printf("CPF: %s\n", cliente->cpf);
             printf("Nome: %s\n", cliente->nome);
             printf("E-mail: %s\n", cliente->email);
-            printf("Telefone: %s\n", cliente->endereco);
-            printf("Id: %s\n", cliente->fone);
+            printf("Endereço: %s\n", cliente->endereco);
+            printf("Telefone: %s\n", cliente->fone);
             printf("Status: %c\n", cliente->status);
         }
     }

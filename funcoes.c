@@ -4,6 +4,7 @@
 #include <ctype.h>
 #include "funcoes.h"
 
+
 int verificarnumero(char* num){
     int a = 0;
     int i;
@@ -19,6 +20,17 @@ int verificarnumero(char* num){
     } else {
         return 0;
     }
+}
+
+int verificarpreco(char* preco){
+    int i;
+    for(i = 0; preco[i] != '\0'; i++){
+        if(!(verificarnumero(&preco[i]))){
+            if((preco[i] != ',') && (preco[i] != '.'))
+                return 0;
+        }
+    }
+    return 1;
 }
 
 int verificardigito(int soma, int peso) {

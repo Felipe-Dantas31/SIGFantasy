@@ -78,17 +78,21 @@ void cadastrar_produto(void) {
         produto->tipo[strcspn(produto->tipo, "\n")] = '\0';
     }while(!verificarnome(produto->tipo));
 
-    //char preco[] = "";
-    //printf("Digite o Preco: ");
-    //scanf("%s", preco);
-    //getchar(); 
-    //produto->preco = strtof(preco, NULL);
-    
-    //char qntd[] = "";
-    //printf("Digite a Quantidade em Estoque: ");
-    //scanf("%s", qntd);
-    //getchar(); 
-    //produto->quantidade = atoi(qntd);
+    char preco[10];
+    do{
+        printf("Digite o Preco: ");
+        scanf("%s", preco);
+        getchar();
+    }while(!verificarpreco(preco));
+    produto->preco = strtof(preco, NULL);
+
+    char qntd[] = "";
+    do{
+        printf("Digite a Quantidade em Estoque: ");
+        scanf("%s", qntd);
+        getchar(); 
+    }while(!verificarnumero(qntd));
+    produto->quantidade = atoi(qntd);
 
     produto->status = '1';
 
@@ -161,7 +165,7 @@ void pesquisar_produto(void){
             printf("Id: %s\n", produto->id);
             printf("Nome: %s\n", produto->nome);
             printf("Tipo: %s\n", produto->tipo);
-            printf("Preço: %f\n", produto->preco);
+            printf("Preço: %.2f\n", produto->preco);
             printf("Quantidade: %d\n", produto->quantidade);
             printf("Status: %c\n", produto->status);
         }
